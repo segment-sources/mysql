@@ -1,7 +1,10 @@
 package main
 
-import "github.com/segment-sources/sqlsource"
+import (
+	"github.com/segment-sources/sqlsource"
+	"github.com/segment-sources/sqlsource/driver"
+)
 
 func main() {
-	sqlsource.Run(&MySQL{})
+	sqlsource.Run(&driver.MySQL{})
 }
