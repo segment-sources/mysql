@@ -32,7 +32,12 @@ The source process is to be run in a trusted environment that has access to the 
 Prerequisites: [Go](https://golang.org/doc/install)
 
 ```bash
-go get -u github.com/segment-sources/mysql
+go get -u github.com/tools/godep
+mkdir -p $GOPATH/src/github.com/segment-sources
+cd $GOPATH/src/github.com/segment-sources
+git clone https://github.com/segment-sources/mysql.git
+cd mysql
+godep go install ./cmd/mysql
 ```
 
 The first step is to initialize your schema. You can do so by running `mysql` with `--init` flag.
