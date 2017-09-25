@@ -37,12 +37,12 @@ mkdir -p $GOPATH/src/github.com/segment-sources
 cd $GOPATH/src/github.com/segment-sources
 git clone https://github.com/segment-sources/mysql.git
 cd mysql
-godep go install ./cmd/mysql
+godep go install ./cmd/source-mysql/
 ```
 
-The first step is to initialize your schema. You can do so by running `mysql` with `--init` flag.
+The first step is to initialize your schema. You can do so by running `source-mysql` with `--init` flag.
 ```bash
-mysql --init --write-key=ab-200-1alx91kx --hostname=mysql-test.ksdg31bcms.us-west-2.rds.amazonaws.com --port=3306 --username=segment --password=cndgks8102baajls --database=segment
+source-mysql --init --write-key=ab-200-1alx91kx --hostname=mysql-test.ksdg31bcms.us-west-2.rds.amazonaws.com --port=3306 --username=segment --password=cndgks8102baajls --database=segment
 ```
 The init step will store the schema of possible tables that the source can sync in `schema.json`. The query will look for tables across all schemas excluding the ones without a `PRIMARY KEY`.
 
@@ -74,7 +74,7 @@ Segment's Objects API requires a unique identifier in order to properly sync you
 
 ### Scan
 ```bash
-mysql --write-key=ab-200-1alx91kx --hostname=mysql-test.ksdg31bcms.us-west-2.rds.amazonaws.com --port=5432 --username=segment --password=cndgks8102baajls --database=segment
+source-mysql --write-key=ab-200-1alx91kx --hostname=mysql-test.ksdg31bcms.us-west-2.rds.amazonaws.com --port=5432 --username=segment --password=cndgks8102baajls --database=segment
 ```
 
 Example Run:
@@ -88,7 +88,7 @@ INFO[0000] Scan finished                                 schema=public table=fil
 ### Usage
 ```
 Usage:
-  mysql
+  source-mysql
     [--debug]
     [--init]
     [--concurrency=<c>]
@@ -99,8 +99,8 @@ Usage:
     --password=<password>
     --database=<database>
     [-- <extra-driver-options>...]
-  mysql -h | --help
-  mysql --version
+  source-mysql -h | --help
+  source-mysql --version
 
 Options:
   -h --help                   Show this screen
