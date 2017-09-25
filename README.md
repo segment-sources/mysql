@@ -29,15 +29,10 @@ would be queryable in your analytics Redshift or MySQL database like this...
 The source process is to be run in a trusted environment that has access to the DB endpoint. This may be either the DB itself, or it could also be a dev box that has access to the DB.
 
 ### Build and Run
-Prerequisites: [Go](https://golang.org/doc/install)
+Prerequisites: [Go >= 1.7](https://golang.org/doc/install)
 
 ```bash
-go get -u github.com/tools/godep
-mkdir -p $GOPATH/src/github.com/segment-sources
-cd $GOPATH/src/github.com/segment-sources
-git clone https://github.com/segment-sources/mysql.git
-cd mysql
-godep go install ./cmd/source-mysql/
+go install github.com/segment-sources/mysql/cmd/source-mysql
 ```
 
 The first step is to initialize your schema. You can do so by running `source-mysql` with `--init` flag.
