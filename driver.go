@@ -86,7 +86,7 @@ func (m *MySQL) Scan(t *domain.Table, lastPkValues []interface{}) (driver.SqlRow
 		whereClause = strings.Join(whereOrList, " OR ")
 	}
 
-	orderByList := []string{}
+	orderByList := make([]string, 0, len(t.PrimaryKeys))
 	for _, column := range t.PrimaryKeys {
 		orderByList = append(orderByList, fmt.Sprintf("`%s`", column))
 	}
@@ -96,7 +96,7 @@ func (m *MySQL) Scan(t *domain.Table, lastPkValues []interface{}) (driver.SqlRow
 		t.TableName, whereClause, orderByClause, chunkSize)
 
 	logger := logrus.WithFields(logrus.Fields{
-		"sql": query,
+		"sql":  query,
 		"args": bindVars,
 	})
 	logger.Debugf("Executing query")
