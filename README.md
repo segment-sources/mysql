@@ -32,7 +32,7 @@ The source process is to be run in a trusted environment that has access to the 
 Prerequisites: [Go >= 1.7](https://golang.org/doc/install)
 
 ```bash
-go install github.com/segment-sources/mysql/cmd/source-mysql
+go get -u github.com/segment-sources/mysql/cmd/source-mysql
 ```
 
 The first step is to initialize your schema. You can do so by running `source-mysql` with `--init` flag.
